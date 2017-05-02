@@ -47,46 +47,37 @@ A linguagem foi desenvolvida entre os anos de 1962 e  1967.
 
 ## Avaliação Comparativa
 
-#### Torre de hanói em SNOBOL:
+#### Replace em SNOBOL:
 
-                define('hanoi(n,ns,nd,ni)')  :(hanoi.end)
-    hanoi  eq(N,0)                           :s(return)
-       hanoi(n - 1,ns,ni,nd)
-       output = 'Move disc ' n ' from ' ns ' to ' nd
-       hanoi(n - 1,ni,nd,ns)                 :(return)
-    hanoi.end
+        str1 = 'Estrutura de Linguagens'
+    l1  str1   'a' = '4' :s(l1)
+        output = str1
+    end
 
+#### Replace em Python:
 
-#### Torre de Hanói em Python:
+	str1= "Estrutura de Linguagens"
+	str1 = str1.replace("a", "4")
+	print str1
 
-    def hanoi(n, source, helper, target):
-      if n > 0:
-        hanoi(n - 1, source, target, helper)
-        if source[0]:
-            disk = source[0].pop()
-            print "moving " + str(disk) + " from " + source[1] + " to " + target[1]
-            target[0].append(disk)
-        hanoi(n - 1, helper, source, target)
-    source = ([5,4,3,2,1], "source")
-    target = ([], "target")
-    helper = ([], "helper")
-    hanoi(len(source[0]),source,helper,target)
-    print source, helper, target
+##### Output dos códigos:
 
-##### Writeability:
+Estrutur4 de Lingu4gens
 
-Analisando a writeability, **SNOBOL** é bem mais direta, necessitando de menos linhas de código.
+#### Writeability:
 
-##### Readability:
+Os códigos são iguais no quesito writeability, ambos foram iguais tanto em simplicidade quanto em velocidade de programação.
 
-Ambas são bem similares no quesito de readability, é possível perceber facilmente o uso da recursividade nas duas linguagens, mas por possuir menos linhas de código a **SNOBOL** se torna mais simples de entender.
+#### Readability:
 
-##### Expressividade:
-  Tanto o código em **Python** quanto em **SNOBOL** possuem a mesma expressividade, ambas executam o código usando recursividade e obtém o mesmo resultado.
+Em Python fica mais visível a modificação que está sendo feita, pois a chamada do método “replace”(substituir) já deixa claro o que está sendo feito.
+
+#### Expressividade:
+Nos tratamentos de strings o SNOBOL se sobressai do python, pois as strings em SNOBOL são mutáveis, podendo assim fazer modificações diretamente na string, enquanto no python é necessário chamar um método “.replace()” que está copiando a string para fazer as modificações e retornando uma nova string modificada sendo necessário estabelecer o valor da string antiga pela nova “ str1 = str1 .replace("a", "4") “.
 
 ## Conclusão
 
-Mesmo sendo uma linguagem antiga ela acaba se saindo um pouco melhor tanto em writeability quanto em readability em alguns códigos.
+SNOBOL é uma linguagem antiga então é possível ver que muitas de suas funcionalidades já estão presentes nas linguagens mais novas, mas ainda assim é possível obter um tratamento de strings aprimorado quando se usa SNOBOL.
 
 Serviu de influencia para varias linguagens que são usadas hoje.
 
