@@ -42,7 +42,7 @@ aprov (_,n1,n2) = (((n1+n2)/2) >= 7)
 -- Usando as definições acima, forneça a implementação para os três trechos marcados com <...>:
 
 turma: Turma
-turma = [ ("Joao",7,4), ("Maria",10,8), ("Jorginho",8, 5), ("Victor", 10, 10), ("Juventa", 2, 4) ]       -- 50 alunos
+turma = [ ("Joao",7,4), ("Maria",10,8), ("Jorginho",8, 5), ("Victor", 10, 10), ("Juventa", 2, 4) ]
 
 -- a) LISTA COM AS MÉDIAS DOS ALUNOS DE "turma" ([5.5, 9, ...])
 medias: List Float
@@ -62,7 +62,7 @@ soma: Float -> Float -> Float
 soma x y = (x + y)
 m1 = List.foldl soma 0 medias
 
-total = m1 / 50
+total = m1 / 5
 
 --main = text (toString medias)
 --main = text (toString aprovados)
