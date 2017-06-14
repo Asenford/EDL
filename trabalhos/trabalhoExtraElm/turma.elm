@@ -64,6 +64,6 @@ m1 = List.foldl soma 0 medias
 
 total = m1 / 5
 
---main = text (toString medias)
+main = text (toString medias)
 --main = text (toString aprovados)
-main = text (toString total)
+--main = text (toString total)
