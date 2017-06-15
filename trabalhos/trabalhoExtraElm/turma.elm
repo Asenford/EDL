@@ -1,3 +1,8 @@
+--Nomes: 
+--Victor Matheus Machado Torres
+--João Sampaio dos Santos
+
+
 import Html exposing (text)
 
 -- Considere uma turma de 50 alunos.
@@ -17,16 +22,11 @@ media (_,n1,n2) = (n1+n2)/2     -- o nome é ignorado
 nome: Aluno -> String
 nome (nm,_,_) = nm              -- as notas são ignoradas
 
-aprov: Aluno -> Bool
-aprov (_,n1,n2) = (((n1+n2)/2) >= 7)
-
-
 
 -- Por fim, considere as assinaturas para as funções map, filter, e fold a seguir:
 
 --List.map: (a->b) -> (List a) -> (List b)
   -- mapeia uma lista de a's para uma lista de b's com uma função de a para b
- 
 
 --List.filter: (a->Bool) -> (List a) -> (List a)
   -- filtra uma lista de a's para uma nova lista de a's com uma função de a para Bool
@@ -42,28 +42,37 @@ aprov (_,n1,n2) = (((n1+n2)/2) >= 7)
 -- Usando as definições acima, forneça a implementação para os três trechos marcados com <...>:
 
 turma: Turma
-turma = [ ("Joao",7,4), ("Maria",10,8), ("Jorginho",8, 5), ("Victor", 10, 10), ("Juventa", 2, 4) ]
+turma = [ ("Joao",7,4.5), ("Maria",10,8), ("Jessica", 9,7.5), ("Jorge", 6,8.5), ("Victor", 3, 5) ]       -- 50 alunos
 
 -- a) LISTA COM AS MÉDIAS DOS ALUNOS DE "turma" ([5.5, 9, ...])
 medias: List Float
 medias = List.map media turma
 
 -- b) LISTA COM OS NOMES DOS ALUNOS DE "turma" APROVADOS (["Maria", ...])
-apro = List.filter aprov turma
 aprovados: List String
-
-aprovados = List.map nome apro
-
+aprovados = List.map nome (List.filter (\a -> (media a) >= 7) turma) 
 
 -- c) MÉDIA FINAL DOS ALUNOS DE "turma" (média de todas as médias)
---total: Float
---total = ...
-soma: Float -> Float -> Float
-soma x y = (x + y)
-m1 = List.foldl soma 0 medias
+total: Float
+total = (List.foldl (\x y -> x+y) 0 (List.map media turma)) / (List.foldl (\x y -> (y+1)) 0 turma)
 
-total = m1 / 5
+-- d) LISTA DE ALUNOS QUE GABARITARAM A P1 ([("Maria",10,8), ...])
+turma_dez_p1: Turma
+turma_dez_p1 = (List.filter (\(_,a,_) -> (a == 10)) turma) 
 
-main = text (toString medias)
+-- e) LISTA COM OS NOMES E MEDIAS DOS ALUNOS APROVADOS ([("Maria",9), ...])
+aprovados2: List (String,Float)
+aprovados2 = List.filter (\(_,a) -> (a >= 7)) (List.map (\(n,a,b) -> (n,(b+a)/2)) turma) 
+
+-- f) LISTA COM TODAS AS NOTAS DE TODAS AS PROVAS ([7,4,10,8,...])
+notas: List Float
+notas = List.foldl (\(_,a,b) c -> [a,b] ++ c) [] turma
+
+
+-- É permitido usar funções auxiliares, mas não é necessário.
+-- (As soluções são pequenas.)
+
+--main = text (toString medias)
 --main = text (toString aprovados)
 --main = text (toString total)
+main = text (toString notas)
